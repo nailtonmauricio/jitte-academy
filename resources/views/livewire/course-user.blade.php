@@ -18,8 +18,8 @@
                         </a>
 
                         <div class="card-body">
-                            <div class="titulo-curso-home text-center mb-2">
-                                <a href="{{ route('course.index', ['course' =>$course->id]) }}" class="text-decoration-none">
+                            <div class="text-center mb-2">
+                                <a href="{{ route('course-modules.index', ['course' =>$course->id]) }}" class="text-decoration-none">
                                     <span class="card-title">{{ $course->name }}</span>
                                 </a>
                             </div>

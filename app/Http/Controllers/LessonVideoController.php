@@ -14,7 +14,7 @@ class LessonVideoController extends Controller
     {
         $lesson = Lesson::where('id', $lesson)->first();
 
-        return view('modules.course.view', ['lesson' =>$lesson]);
+        return view('modules.course.view', ['menu' => 'meus-cursos', 'lesson' =>$lesson]);
     }
 
     /**

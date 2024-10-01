@@ -16,8 +16,8 @@
                     {{ $lesson->title }}
                 </div>
                 <div class="card-body">
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" height="750" src="{{ $lesson->content }}" width="1610" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+                    <div class="ratio ratio-16x9">
+                        <iframe src="{{ $lesson->content }}" title="YouTube video" allowfullscreen></iframe>
                     </div>
                 </div>
                 <div class="card-footer">

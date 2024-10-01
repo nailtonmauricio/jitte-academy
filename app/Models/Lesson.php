@@ -15,6 +15,7 @@ class Lesson extends Model
         'title',
         'summary',
         'content',
+        'length',
     ];
 
     public function modules()

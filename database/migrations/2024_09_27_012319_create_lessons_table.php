@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('summary')->nullable();
             $table->string('content')->comment('src url');
+            $table->time('length');
             $table->timestamps();
         });
     }

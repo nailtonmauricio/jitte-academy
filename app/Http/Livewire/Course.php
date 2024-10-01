@@ -20,7 +20,7 @@ class Course extends Component
         $course = CourseModel::findOrFail($courseId);
 
         // Passa os dados do curso para a view
-        return view('modules.course.show', compact('course'));
+        return view('modules.course.index', compact('course'));
     }
 
     public function show($courseId)

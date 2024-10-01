@@ -3,7 +3,7 @@
         <thead>
         <tr>
             <th class="col-md-6">Aula</th>
-            <th class="col-md-6 text-end" colspan="2">Controles</th>
+            <th class="col-md-6 text-end" colspan="2">Status</th>
         </tr>
         </thead>
         <tbody>
@@ -11,8 +11,7 @@
             @foreach($lessons as $lesson)
                 <tr>
                     <td class="col-md-6"><a class="nav-link" href="{{ route('lesson-video.index', ['lesson'=>$lesson->id]) }}">{{ $lesson->title }}</a></td>
-                    <td class="col-md-6 text-end"><a href="{{ $lesson->content }}" class="btn btn-outline-dark btn-sm"><i class="fa-brands fa-youtube"></i></a></td>
-                    <td class="col-md-6 text-end"><a class="btn btn-outline-dark btn-sm"><i class="fa-solid fa-square"></i></a></td>
+                    <td class="col-md-6 text-end"><i class="fa-regular fa-square"></i></td>
                 </tr>
             @endforeach
         @else

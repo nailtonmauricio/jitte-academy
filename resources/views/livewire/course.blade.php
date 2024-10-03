@@ -20,11 +20,6 @@
                         </a>
 
                         <div class="card-body">
-                            <div class="titulo-curso-home text-center">
-                                <a href="{{ route('course.index', ['course' =>$course->id]) }}">
-                                    <span class="card-title">{{ $course->name }}</span>
-                                </a>
-                            </div>
                             <p class="text-center" style="padding-top: 10px;">
                                 <a href="{{ route('course.index', ['course'=>$course->id]) }}" class="btn btn-outline-primary">Mais Detalhes</a>
                             </p>

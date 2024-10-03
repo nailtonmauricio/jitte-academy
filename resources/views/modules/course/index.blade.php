@@ -3,32 +3,27 @@
     <div class="container-fluid px-4">
         <div class="mb-1 hstack gap-1">
             <ol class="breadcrumb mb-3 mt-3 ms-auto">
-                <li class="breadcrumb-item active"><a href="#" class="text-decoration-none">Curso</a></li>
+                <li class="breadcrumb-item active"><a href="{{ route('all-courses.index') }}" class="text-decoration-none">Cursos</a></li>
                 <li class="breadcrumb-item active">{{ $course->id }}</li>
-                <li class="breadcrumb-item active">Apresentação</li>
+                <li class="breadcrumb-item active">Mostrar</li>
             </ol>
         </div>
 
         <div class="card mb-4 border-light shadow">
             <div class="card-header hstack gap-2">
-        <span class="ms-auto">
-            <a href="{{ route('landing-page.index') }}" class="bg-gradient btn btn-primary btn-sm">
-                <i class="fa-solid fa-list"></i>
-            </a>
-        </span>
+                <h1>{{ $course->name }}</h1>
             </div>
             <div class="card-body">
                 <x-alert/>
                 <div class="row">
-                    <!-- Imagem -->
                     <div class="col-12 col-md-4 mb-3 mb-md-0">
                         <figure class="figure">
                             <img src="{{ $course->card }}" class="figure-img img-fluid rounded" alt="{{ $course->name }}">
                         </figure>
                     </div>
-                    <!-- Texto -->
+
                     <div class="col-12 col-md-8">
-                        <h1>{{ $course->name }}</h1>
+
                         <p>{{ $course->description }}</p>
                         <p>
                             <strong>Duração : {{ $course->duration }}</strong><br>

@@ -11,20 +11,23 @@
 
         <div class="card mb-4 border-light shadow">
             <div class="card-header hstack gap-2">
-                <span class="ms-auto">
-                    <a href="{{ route('landing-page.index') }}" class="bg-gradient btn btn-primary btn-sm"><i
-                            class="fa-solid fa-list"></i></a>
-                </span>
+        <span class="ms-auto">
+            <a href="{{ route('landing-page.index') }}" class="bg-gradient btn btn-primary btn-sm">
+                <i class="fa-solid fa-list"></i>
+            </a>
+        </span>
             </div>
             <div class="card-body">
                 <x-alert/>
                 <div class="row">
-                    <div class="col-4">
+                    <!-- Imagem -->
+                    <div class="col-12 col-md-4 mb-3 mb-md-0">
                         <figure class="figure">
                             <img src="{{ $course->card }}" class="figure-img img-fluid rounded" alt="{{ $course->name }}">
                         </figure>
                     </div>
-                    <div class="col-8">
+                    <!-- Texto -->
+                    <div class="col-12 col-md-8">
                         <h1>{{ $course->name }}</h1>
                         <p>{{ $course->description }}</p>
                         <p>
@@ -43,5 +46,6 @@
                 </div>
             </div>
         </div>
+
     </div>
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lesson;
+use App\Models\Module;
 use Illuminate\Http\Request;
 
 class LessonVideoController extends Controller
@@ -10,11 +11,27 @@ class LessonVideoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index($lesson)
+    public function index($lessonId)
     {
-        $lesson = Lesson::where('id', $lesson)->first();
+        $lesson = Lesson::find($lessonId);
 
-        return view('modules.course.view', ['menu' => 'meus-cursos', 'lesson' =>$lesson]);
+        if (!$lesson) {
+            abort(404);
+        }
+
+        $module = Module::find($lesson->module_id);
+
+        if (!$module) {
+            abort(404);
+        }
+
+        $courseId = $module->course_id;
+
+        return view('modules.course.view', [
+            'menu' => 'meus-cursos',
+            'lesson' => $lesson,
+            'course_id' => $courseId
+        ]);
     }
 
     /**

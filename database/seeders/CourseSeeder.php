@@ -25,6 +25,21 @@ class CourseSeeder extends Seeder
             ]);
         }
 
-        Course::factory(8)->create();
+        if (!Course::where('id', 2)->exists()) {
+            Course::create([
+                'name' => 'Regex',
+                'description' => 'Regex, ou expressões regulares (do inglês, regular expressions), são sequências de caracteres que formam um padrão de busca. Elas são usadas para encontrar, validar, substituir ou manipular textos de maneira eficiente em strings, baseando-se em padrões predefinidos.
+As expressões regulares permitem que você faça coisas como:
+    Procurar por padrões específicos dentro de um texto (como números, datas ou e-mails).
+    Validar se uma string segue um formato específico (por exemplo, se uma senha tem pelo menos 8 caracteres, contém uma letra maiúscula, um número, etc.).
+    Substituir parte de um texto baseado em um padrão.',
+                'subcategory_id' => 1,
+                'card'=> 'https://via.placeholder.com/640x480.png/00ccbb?text=Regex',
+                'duration'=> '01:36:00',
+                'price' => 00.00,
+            ]);
+        }
+
+        //Course::factory(8)->create();
     }
 }

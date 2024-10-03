@@ -32,5 +32,35 @@ São criadas usando números seguidos de um ponto (.):',
                 'length' => '00:20:00'
             ]);
         }
+
+        if (!Lesson::where('id', 2)->exists()) {
+            Lesson::create([
+                'module_id' => 2,
+                'title' => 'Grupos, conjuntos e ocorrências em expressões regulares',
+                'summary' => 'Hoje vamos falar sobre expressões regulares e vamos ver na prática como validar, identificar e formatar strings com elas, além de aprender passo a passo como montar expressões regulares e o que cada parte da estrutura significa.',
+                'content' => 'https://www.youtube.com/embed/X8-sPWqH6AI?si=J2wELsVcAmWBGfqC title="YouTube video player"',
+                'length' => '00:34:00'
+            ]);
+        }
+
+        if (!Lesson::where('id', 3)->exists()) {
+            Lesson::create([
+                'module_id' => 2,
+                'title' => 'Classes de caracteres e flags em expressões regulares',
+                'summary' => 'Hoje vamos avançar no tema de expressões regulares e vamos aprender sobre classes de caracteres e flags, além de um bonus prático para o dia-a-dia hehe',
+                'content' => 'https://www.youtube.com/embed/KXCacyixPwY?si=sX5C3CyTBVWi8jak title="YouTube video player"',
+                'length' => '00:30:25'
+            ]);
+        }
+
+        if (!Lesson::where('id', 4)->exists()) {
+            Lesson::create([
+                'module_id' => 2,
+                'title' => 'Operador OR, acentos e grupos avançados em expressões regulares',
+                'summary' => 'No vídeo de hoje vamos falar um pouco mais sobre expressões regulares e vamos aprender como criar expressões condicionais com o operador OR, validar caracteres com acento e utilizar grupos avançados.',
+                'content' => 'https://www.youtube.com/embed/u0ojhxSvmrQ?si=PiX9VVj-hsdyhrOk title="YouTube video player"',
+                'length' => '00:23:18'
+            ]);
+        }
     }
 }

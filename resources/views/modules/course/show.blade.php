@@ -3,8 +3,8 @@
     <div class="mb-1 hstack gap-3">
         <ol class="breadcrumb mb-3 mt-3 ms-auto">
             <li class="breadcrumb-item"><a href="{{ route('my-courses.index') }}" class="text-decoration-none">Meus cursos</a></li>
+            <li class="breadcrumb-item active">{{ $course->id }}</li>
             <li class="breadcrumb-item active">Módulos</li>
-            <li class="breadcrumb-item active">Listar</li>
         </ol>
     </div>
 

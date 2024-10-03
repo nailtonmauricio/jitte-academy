@@ -13,7 +13,7 @@
             @foreach($lessons as $lesson)
                 <tr>
                     <td class="col-md-6"><a class="nav-link" href="{{ route('lesson-video.index', ['lesson'=>$lesson->id]) }}">{{ $lesson->title }}</a></td>
-                    <td class="col-md-2"></td>
+                    <td class="col-md-2">{{ $lesson->length }}</td>
                     <td class="col-md-4"></td>
                     <td class="col-md-2 text-end"><i class="fa-regular fa-square"></i></td>
                 </tr>

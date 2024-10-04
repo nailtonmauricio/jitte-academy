@@ -22,4 +22,11 @@ class Lesson extends Model
     {
         return $this->belongsTo(Module::class);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class)
+                    ->withPivot('status')
+                    ->withTimestamps();
+    }
 }

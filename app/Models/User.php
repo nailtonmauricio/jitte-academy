@@ -55,10 +55,17 @@ class User extends Authenticatable implements Auditable
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function courses()
     {
         return $this->belongsToMany(Course::class)->withPivot('progress');
+    }
+
+    public function lessons()
+    {
+        return $this->belongsToMany(Lesson::class)
+                    ->withPivot('status', 'updated_at')
+                    ->withTimestamps();
     }
 }

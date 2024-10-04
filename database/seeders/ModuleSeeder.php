@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Module;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use PhpParser\Node\Expr\AssignOp\Mod;
 
 class ModuleSeeder extends Seeder
 {
@@ -26,6 +27,22 @@ class ModuleSeeder extends Seeder
                 'course_id' => 2,
                 'title' => 'Explorando expressões regulares',
                 'summary' => 'As expressões regulares são muito poderosas e utilizadas em diversas linguagens de programação, como JavaScript, PHP, Python, entre outras.',
+            ]);
+        }
+
+        if (!Module::where('id', 3)->exists()) {
+            Module::create([
+                'course_id' => 3,
+                'title' => 'Métodos HTTP: quando e onde usar cada um deles',
+                'summary' => 'No vídeo de hoje vamos aprender a diferença entre alguns métodos do protocolo HTTP e vamos ver quando e onde usar cada um deles.',
+            ]);
+        }
+
+        if (!Module::where('id', 4)->exists()) {
+            Module::create([
+                'course_id' => 3,
+                'title' => 'Status HTTP: quando e onde usar cada um deles',
+                'summary' => 'No vídeo de hoje vamos conhecer os grupos de status do protocolo HTTP e vamos ver quando e onde usar cada um deles.',
             ]);
         }
     }

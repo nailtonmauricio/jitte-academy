@@ -40,6 +40,17 @@ As expressões regulares permitem que você faça coisas como:
             ]);
         }
 
+        if (!Course::where('id', 3)->exists()) {
+            Course::create([
+                'name' => 'HTTP, Status e Métodos',
+                'description' => 'Como utilizar de foma correta o protocolo HTTP para aplicar seus status e métodos no desenvolvimento.',
+                'subcategory_id' => 1,
+                'card' => 'https://via.placeholder.com/640x480.png/99ccaa?text=HTTP, Status e Métodos',
+                'duration' => '00:40:00',
+                'price' => 00.00,
+            ]);
+        }
+
         //Course::factory(8)->create();
     }
 }

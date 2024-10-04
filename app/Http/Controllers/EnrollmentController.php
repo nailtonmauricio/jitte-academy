@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EnrollmentController extends Controller
 {
@@ -63,16 +65,65 @@ class EnrollmentController extends Controller
         //
     }
 
+    /*public function enroll($courseId)
+    {
+        DB::beginTransaction();
+
+        try {
+            $course = Course::findOrFail($courseId);
+            $user = auth()->user();
+
+            // Processar matrícula
+            $user->courses()->attach($course->id);
+
+            DB::commit();
+
+            // Redirecionar com mensagem de sucesso
+            return redirect()->route('my-courses.index', $course->id)
+                ->with('success', 'Matricula concluída com sucesso.');
+        } catch (Exception $e) {
+            DB::rollBack();
+
+            return redirect()->route('all-courses.index')
+                ->with('error', 'Ocorreu um erro ao processar a matrícula.');
+        }
+
+    }*/
     public function enroll($courseId)
     {
-        $course = Course::findOrFail($courseId);
-        $user = auth()->user();
+        DB::beginTransaction();
 
-        // Processar matrícula
-        $user->courses()->attach($course->id);
+        try {
+            // Buscar o curso
+            $course = Course::with('modules.lessons')->findOrFail($courseId);
+            $user = auth()->user();
 
-        // Redirecionar com mensagem de sucesso
-        return redirect()->route('my-courses.index', $course->id)
-                         ->with('success', 'Matricula concluída com sucesso!');
+            // Matricular o usuário no curso
+            $user->courses()->attach($course->id);
+
+            // Coletar todas as aulas relacionadas ao curso
+            $lessons = $course->modules->flatMap(function($module) {
+                return $module->lessons;
+            });
+
+            // Inserir as aulas na tabela pivot 'lesson_user'
+            foreach ($lessons as $lesson) {
+                $user->lessons()->attach($lesson->id, [
+                    'created_at' => now(),
+                    'updated_at' => null,
+                ]);
+            }
+
+            DB::commit();
+
+            // Redirecionar com mensagem de sucesso
+            return redirect()->route('my-courses.index', $course->id)
+                ->with('success', 'Matrícula concluída com sucesso.');
+        } catch (Exception $e) {
+            DB::rollBack();
+
+            return redirect()->route('all-courses.index')
+                ->with('error', 'Ocorreu um erro ao processar a matrícula.');
+        }
     }
 }

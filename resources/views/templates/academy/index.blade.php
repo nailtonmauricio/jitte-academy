@@ -37,7 +37,11 @@
     <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0">
         @if(!auth()->check())
             <li class="nav-item">
-                <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal">
+                {{--<a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal">
+                    Entrar<span class="fa fa-sign-in ms-3"></span>
+                </a>--}}
+
+                <a href="#" class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLogin" aria-controls="offcanvasRight">
                     Entrar<span class="fa fa-sign-in ms-3"></span>
                 </a>
             </li>
@@ -69,28 +73,40 @@ Side Navbar
             <nav class="sb-sidenav accordion sb-sidenav-five" id="sidenavAccordion">
             <div class="sb-sidenav-menu">
                 <div class="nav">
-                    <div class="sb-sidenav-menu-heading">Trilha de Sucesso</div>
+                    <div class="sb-sidenav-menu-heading">Core</div>
+                    <a @class(['nav-link', 'active'=>isset($menu) && $menu == 'inicio'])  href="{{ route('home.index') }}">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-chart-column"></i></div>
+                        Dashboard
+                    </a>
+
                     <a @class(['nav-link', 'active'=>isset($menu) && $menu == 'cursos'])  href="{{ route('all-courses.index') }}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-swatchbook"></i></div>
                         Cursos
                     </a>
 
+                    <a @class(['nav-link'])  href="{{ route('visitor.logout', ['user']) }}">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-right-from-bracket"></i></div>
+                        Sair
+                    </a>
+
+                    <div class="sb-sidenav-menu-heading">Trilha de Sucesso</div>
                     <a @class(['nav-link', 'active'=>isset($menu) && $menu == 'meus-cursos']) href="{{ route('my-courses.index') }}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-user-graduate"></i></div>
                         Meus Cursos
                     </a>
 
-                    <a class="nav-link" href="index.html">
-                        <div class="sb-nav-link-icon"><i class="fa-solid fa-file"></i></div>
-                        Minhas Declarações
-                    </a>
-
-                    <a class="nav-link" href="index.html">
+                    <a @class(['nav-link', 'active'=>isset($menu) && $menu == 'avaliacoes']) href="{{ route('quiz.index') }}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-spell-check"></i></div>
                         Avaliações
                     </a>
 
-                    <a class="nav-link" href="index.html">
+                    <div class="sb-sidenav-menu-heading">Minhas Conquistas</div>
+                    <a @class(['nav-link', 'active'=>isset($menu) && $menu == 'declaracao']) href="{{ route('attendance.index') }}">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-file"></i></div>
+                        Minhas Declarações
+                    </a>
+
+                    <a @class(['nav-link', 'active'=>isset($menu) && $menu == 'certificado']) href="{{ route('certificate.index') }}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-trophy"></i></div>
                         Meus Certificados
                     </a>
@@ -132,7 +148,7 @@ Side Navbar
 
 <!--
 ========================================================================================================================
-Login Modal
+Modal Login
 ========================================================================================================================
 -->
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
@@ -179,6 +195,44 @@ Login Modal
 
 <!--
 ========================================================================================================================
+Offcanvas Login
+========================================================================================================================
+-->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasLogin" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasRightLabel">Login</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <form class="form-floating" action="{{ route('visitor.login') }}" method="POST">
+            @csrf
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="email" name="email" placeholder="e-mail">
+                <label for="email">E-Mail</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Senha">
+                <label for="password">Senha</label>
+            </div>
+            <div class="d-grid gap-2 mb-2">
+                <button type="submit" class="btn btn-dark bg-gradient">Enviar</button>
+            </div>
+        </form>
+        <div class="row justify-content-around mt-2">
+            <!-- Link para abrir Offcanvas de Cadastro -->
+            <div class="col-6">
+                <a class="text-secondary" href="#" onclick="openRegister()">Cadastre-se</a>
+            </div>
+            <!-- Link para abrir Offcanvas de Recuperar Senha -->
+            <div class="col-6 text-end">
+                <a class="text-secondary" href="#" onclick="openRecover()">Esqueceu a senha?</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+========================================================================================================================
 Login Cadastrar
 ========================================================================================================================
 -->
@@ -197,7 +251,11 @@ Login Cadastrar
                         <label for="name">Nome</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="contact" name="contact" placeholder="Contato">
+                        <input type="text" class="form-control" id="document" name="document" placeholder="CPF" data-maska="###.###.###-##">
+                        <label for="document">CPF</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="contact" name="contact" placeholder="Contato" data-maska="(##) #####-####">
                         <label for="contact">Contato</label>
                     </div>
                     <div class="form-floating mb-3">
@@ -214,6 +272,21 @@ Login Cadastrar
                 </form>
             </div>
         </div>
+    </div>
+</div>
+
+<!--
+========================================================================================================================
+Offcanvas Cadastrar
+========================================================================================================================
+-->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRegister" aria-labelledby="offcanvasRegisterLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasRegisterLabel">Cadastre-se</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+
     </div>
 </div>
 
@@ -243,6 +316,21 @@ Recuperar Senha
                 </form>
             </div>
         </div>
+    </div>
+</div>
+
+<!--
+========================================================================================================================
+Offcanvas Recuperar Senha
+========================================================================================================================
+-->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRecover" aria-labelledby="offcanvasRecoverLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasRecoverLabel">Recuperar Senha</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+
     </div>
 </div>
 

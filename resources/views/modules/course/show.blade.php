@@ -12,7 +12,7 @@
         <div class="card-header">
             <div class="d-flex justify-content-between">
                 <h2>{{ $course->name }}</h2>
-                <a class="btn btn-primary bg-gradient mb-2" href="{{ route('course-files.download', $course->id) }}"><i class="fa-solid fa-download"></i> Arquivos</a>
+                <a class="btn btn-primary bg-gradient mb-2" href="{{ route('course-files.download', $course->id) }}"><i class="fa-solid fa-download"></i><span class="d-none d-sm-inline ms-2">Material de apoio</span></a>
             </div>
 
             @if($user = $course->users->first())

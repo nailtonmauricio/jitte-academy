@@ -36,8 +36,7 @@ class CourseUser extends Component
             ->with(['users' => function ($query) {
                 $query->where('users.id', auth()->user()->id)
                     ->withPivot('progress'); // Inclui o campo 'progress' da tabela pivot
-            }])
-            ->inRandomOrder();
+            }]);
 
         // Retorna a view com a paginação
 

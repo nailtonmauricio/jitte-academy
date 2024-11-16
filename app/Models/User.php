@@ -59,7 +59,9 @@ class User extends Authenticatable implements Auditable
      */
     public function courses()
     {
-        return $this->belongsToMany(Course::class)->withPivot('progress');
+        return $this->belongsToMany(Course::class)
+            ->withPivot('progress', 'created_at', 'updated_at')
+            ->withTimestamps();
     }
 
     public function lessons()
@@ -67,5 +69,17 @@ class User extends Authenticatable implements Auditable
         return $this->belongsToMany(Lesson::class)
                     ->withPivot('status', 'updated_at')
                     ->withTimestamps();
+    }
+
+    public function student()
+    {
+        return $this->hasOne(Student::class);
+    }
+
+    public function quizzes()
+    {
+        return $this->belongsToMany(Quiz::class, 'user_quizzes')
+            ->withPivot('score') // Adicione colunas extras, se necessário
+            ->withTimestamps();
     }
 }

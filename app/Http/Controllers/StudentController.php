@@ -59,15 +59,16 @@ class StudentController extends Controller
             Student::create([
                 'user_id' => $lastInsertId,
                 'name' => $request->name,
+                'document' => $request->document,
                 'contact' => $request->contact,
-                'registration' => date('Y').$lastInsertId,
+                'registration' => Student::generateRegistrationNumber($lastInsertId),
             ]);
 
             // Operação é concluída com êxito
             DB::commit();
 
             // Redirecionar o usuário, enviar a mensagem de sucesso
-            return redirect()->route('landingPage.index')->with('success', 'Usuário cadastrado com sucesso!');
+            return redirect()->route('landing-page.index')->with('success', 'Usuário cadastrado com sucesso!');
         } catch (Exception $e) {
             // Salvar log
             Log::info('Usuário não cadastrado.', ['error' => $e->getMessage()]);
@@ -111,6 +112,4 @@ class StudentController extends Controller
     {
         //
     }
-
-
 }

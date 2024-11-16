@@ -18,7 +18,7 @@ class Lesson extends Model
         'length',
     ];
 
-    public function modules()
+    public function module()
     {
         return $this->belongsTo(Module::class);
     }
@@ -26,7 +26,7 @@ class Lesson extends Model
     public function users()
     {
         return $this->belongsToMany(User::class)
-                    ->withPivot('status')
+                    ->withPivot('status','updated_at')
                     ->withTimestamps();
     }
 }

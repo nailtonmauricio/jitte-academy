@@ -23,6 +23,7 @@ class StudentFactory extends Factory
         return [
             'user_id' => User::factory(), // Gera um usuário automaticamente
             'name' => $this->faker->name(),
+            'document' => $this->faker->numerify('###########'),
             'contact' => $this->faker->phoneNumber(),
             'registration' => $this->faker->unique()->numerify('2024######'), // Gera um número único
         ];

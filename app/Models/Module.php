@@ -16,7 +16,7 @@ class Module extends Model
         'summary',
     ];
 
-    public function courses()
+    public function course()
     {
         return $this->belongsTo(Course::class);
     }

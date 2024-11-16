@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
-use App\Models\Lesson;
+use App\Models\CourseUser;
 use App\Models\Module;
-use Illuminate\Http\Request;
 
 class ModuleController extends Controller
 {
@@ -14,6 +13,9 @@ class ModuleController extends Controller
     {
         // Recuperar o curso
         $course = Course::findOrFail($courseId);
+        $courseUser = CourseUser::where('course_id', $courseId)
+                                ->where('user_id', auth()->user()->id)
+                                ->first();
 
         // Recuperar os módulos do curso
         $modules = Module::where('course_id', $course->id)
@@ -40,10 +42,11 @@ class ModuleController extends Controller
         }
 
         return view('modules.course.show', [
-            'menu' => 'meus-cursos',
-            'course' => $course,
-            'modules' => $modules,
-            'lessons' => $userLessons,
+            'menu'      => 'meus-cursos',
+            'course'    => $course,
+            'courseUser'=> $courseUser,
+            'modules'   => $modules,
+            'lessons'   => $userLessons,
         ]);
     }
 }

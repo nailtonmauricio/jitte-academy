@@ -16,6 +16,8 @@ class HomeController extends Controller
             return view('modules.home.root.index', array_merge(['menu' => 'inicio'], $loginAttemptsData));
         } elseif ($user->hasRole('Admin')) {
             return view('modules.home.admin.index', ['menu' => 'inicio']);
+        } elseif ($user->hasRole('Student')) {
+            return view('modules.home.student.show', ['menu' => 'inicio']);
         } else {
             return view('modules.home.default.index', ['menu' => 'inicio']);
         }

@@ -6,6 +6,7 @@ use App\Models\Course;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class EnrollmentController extends Controller
 {
@@ -65,41 +66,20 @@ class EnrollmentController extends Controller
         //
     }
 
-    /*public function enroll($courseId)
-    {
-        DB::beginTransaction();
-
-        try {
-            $course = Course::findOrFail($courseId);
-            $user = auth()->user();
-
-            // Processar matrícula
-            $user->courses()->attach($course->id);
-
-            DB::commit();
-
-            // Redirecionar com mensagem de sucesso
-            return redirect()->route('my-courses.index', $course->id)
-                ->with('success', 'Matricula concluída com sucesso.');
-        } catch (Exception $e) {
-            DB::rollBack();
-
-            return redirect()->route('all-courses.index')
-                ->with('error', 'Ocorreu um erro ao processar a matrícula.');
-        }
-
-    }*/
     public function enroll($courseId)
     {
         DB::beginTransaction();
 
         try {
-            // Buscar o curso
-            $course = Course::with('modules.lessons')->findOrFail($courseId);
+            // Buscar o curso com módulos e aulas
+            $course = Course::with('modules.lessons', 'quizzes')->findOrFail($courseId);
             $user = auth()->user();
 
             // Matricular o usuário no curso
-            $user->courses()->attach($course->id);
+            $user->courses()->attach($course->id, [
+                'created_at' => now(),
+                'updated_at' => null,
+            ]);
 
             // Coletar todas as aulas relacionadas ao curso
             $lessons = $course->modules->flatMap(function($module) {
@@ -107,12 +87,13 @@ class EnrollmentController extends Controller
             });
 
             // Inserir as aulas na tabela pivot 'lesson_user'
-            foreach ($lessons as $lesson) {
-                $user->lessons()->attach($lesson->id, [
-                    'created_at' => now(),
-                    'updated_at' => null,
-                ]);
-            }
+            $user->lessons()->syncWithoutDetaching($lessons->pluck('id')->toArray());
+
+            // Coletar todos os quizzes relacionados ao curso diretamente
+            $quizIds = $course->quizzes->pluck('id');
+
+            // Inserir os quizzes na tabela pivot 'user_quizzes' sem duplicar
+            $user->quizzes()->syncWithoutDetaching($quizIds->toArray());
 
             DB::commit();
 
@@ -121,6 +102,9 @@ class EnrollmentController extends Controller
                 ->with('success', 'Matrícula concluída com sucesso.');
         } catch (Exception $e) {
             DB::rollBack();
+
+            // Log para identificar erro, se necessário
+            Log::error('Erro ao matricular no curso: ' . $e->getMessage());
 
             return redirect()->route('all-courses.index')
                 ->with('error', 'Ocorreu um erro ao processar a matrícula.');

@@ -37,6 +37,8 @@
                                 @csrf
                                 <button type="submit" class="btn btn-primary bg-gradient">Inscrever-se</button>
                             </form>
+                        @else
+                            <button type="submit" class="btn btn-primary bg-gradient" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLogin" aria-controls="offcanvasRight" onclick="noRegisteredInfo()">Ver Curso</button>
                         @endif
 
                     </div>
@@ -45,4 +47,13 @@
         </div>
 
     </div>
+    <script>
+        function noRegisteredInfo() {
+            Swal.fire({
+                text: "Se você já possui cadastro, faça login para acessar o conteúdo deste curso. Caso contrário, registre-se agora e aproveite tudo o que ele oferece!",
+                icon: "info",
+                showConfirmButton: false,
+            });
+        }
+    </script>
 @endsection

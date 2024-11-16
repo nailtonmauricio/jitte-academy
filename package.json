@@ -20,7 +20,8 @@
         "chartjs": "^0.3.24",
         "i": "^0.3.7",
         "jquery": "^3.7.1",
-        "summernote": "^0.8.20",
-        "sweetalert2": "^11.12.3"
+        "maska": "^3.0.3",
+        "summernote": "^0.9.1",
+        "sweetalert2": "^11.6.13"
     }
 }

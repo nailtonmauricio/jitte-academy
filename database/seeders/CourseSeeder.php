@@ -20,8 +20,8 @@ class CourseSeeder extends Seeder
                'description' => 'Markdown é uma linguagem de marcação leve amplamente utilizada para formatar texto na web. Ela permite adicionar formatação ao texto de forma simples, usando uma sintaxe fácil de ler e escrever.',
                'subcategory_id' => 1,
                'card'=> 'https://via.placeholder.com/640x480.png/00bbbb?text=Markdown',
-               'duration'=> '00:20:00',
                'price' => 00.00,
+               'duration' => '04:20:00',
             ]);
         }
 
@@ -35,8 +35,8 @@ As expressões regulares permitem que você faça coisas como:
     Substituir parte de um texto baseado em um padrão.',
                 'subcategory_id' => 1,
                 'card'=> 'https://via.placeholder.com/640x480.png/00ccbb?text=Regex',
-                'duration'=> '01:36:00',
                 'price' => 00.00,
+                'duration' => '08:27:43',
             ]);
         }
 
@@ -46,8 +46,8 @@ As expressões regulares permitem que você faça coisas como:
                 'description' => 'Como utilizar de foma correta o protocolo HTTP para aplicar seus status e métodos no desenvolvimento.',
                 'subcategory_id' => 1,
                 'card' => 'https://via.placeholder.com/640x480.png/99ccaa?text=HTTP, Status e Métodos',
-                'duration' => '00:40:00',
                 'price' => 00.00,
+                'duration' => '06:22:42',
             ]);
         }
 

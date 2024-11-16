@@ -45,5 +45,32 @@ class ModuleSeeder extends Seeder
                 'summary' => 'No vídeo de hoje vamos conhecer os grupos de status do protocolo HTTP e vamos ver quando e onde usar cada um deles.',
             ]);
         }
+
+        if (!Module::where('id', 5)->exists()) {
+            Module::create([
+               'course_id' => 1,
+               'title' => 'Avaliação Final',
+               'summary' => 'Agora está na hora de por a prova o conhecimento adquirido durante sua jornada. A avaliação consiste em 20 questões de múltipla escolha
+               com uma duração máxima de 100 minutos.'
+            ]);
+        }
+
+        if (!Module::where('id', 6)->exists()) {
+            Module::create([
+                'course_id' => 2,
+               'title' => 'Avaliação Final',
+               'summary' => 'Agora está na hora de por a prova o conhecimento adquirido durante sua jornada. A avaliação consiste em 20 questões de múltipla escolha
+               com uma duração máxima de 100 minutos.'
+            ]);
+        }
+
+        if (!Module::where('id', 7)->exists()) {
+            Module::create([
+                'course_id' => 3,
+               'title' => 'Avaliação Final',
+               'summary' => 'É chegada a hora de por a prova o conhecimento adquirido durante sua jornada. A avaliação consiste em 20 questões de múltipla escolha
+               com uma duração máxima de 100 minutos.'
+            ]);
+        }
     }
 }

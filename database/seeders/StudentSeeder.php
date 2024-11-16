@@ -28,6 +28,7 @@ class StudentSeeder extends Seeder
             Student::create([
                 'user_id' => $user->id,
                 'name' => 'Nailton M. Araújo',
+                'document' => '05882701481',
                 'contact' => '83993348144',
                 'registration' => '20240935823',
             ]);

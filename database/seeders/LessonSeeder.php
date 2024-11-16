@@ -73,5 +73,38 @@ São criadas usando -, * ou +: Listas ordenadas São criadas usando números seg
                 'length' => '00:11:50'
             ]);
         }
+
+        if (!Lesson::where('id', 7)->exists()) {
+            Lesson::create([
+                'module_id' => 5,
+                'title' => 'Avaliação de Markdown',
+                'summary' => 'No vídeo de hoje vamos conhecer os grupos de status do protocolo HTTP e vamos ver quando e onde usar cada um deles.',
+                'content' => 'https://www.youtube.com/embed/rWIOwa-l59o?si=f53_iRtep9eMsnDK" title="YouTube video player"',
+                'length' => '01:40:00',
+                'is_exam' => true,
+            ]);
+        }
+
+        if (!Lesson::where('id', 8)->exists()) {
+            Lesson::create([
+                'module_id' => 6,
+                'title' => 'Avaliação de Regex',
+                'summary' => 'No vídeo de hoje vamos conhecer os grupos de status do protocolo HTTP e vamos ver quando e onde usar cada um deles.',
+                'content' => 'https://www.youtube.com/embed/rWIOwa-l59o?si=f53_iRtep9eMsnDK" title="YouTube video player"',
+                'length' => '01:40:00',
+                'is_exam' => true,
+            ]);
+        }
+
+        if (!Lesson::where('id', 9)->exists()) {
+            Lesson::create([
+                'module_id' => 7,
+                'title' => 'Avaliação de Status e Métodos HTTP',
+                'summary' => 'No vídeo de hoje vamos conhecer os grupos de status do protocolo HTTP e vamos ver quando e onde usar cada um deles.',
+                'content' => 'https://www.youtube.com/embed/rWIOwa-l59o?si=f53_iRtep9eMsnDK" title="YouTube video player"',
+                'length' => '01:40:00',
+                'is_exam' => true,
+            ]);
+        }
     }
 }

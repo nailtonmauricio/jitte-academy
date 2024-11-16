@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('card')->nullable(true);
-            $table->time('duration');
             $table->decimal('price')->default(0.0);
+            $table->string('duration');
             $table->timestamps();
         });
     }

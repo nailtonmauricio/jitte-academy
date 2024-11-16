@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Quiz;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -24,10 +25,12 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             SubcategorySeeder::class,
             CourseSeeder::class,
-            StudentSeeder::class,
             MyCourseSeeder::class,
             ModuleSeeder::class,
             LessonSeeder::class,
+            QuizSeeder::class,
+            QuestionSeeder::class,
+            AnswerSeeder::class,
         ]);
     }
 }

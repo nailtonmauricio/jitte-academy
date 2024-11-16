@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('summary')->nullable();
             $table->string('content')->comment('src url');
             $table->time('length');
+            $table->boolean('is_exam')->default(false);
             $table->timestamps();
         });
     }

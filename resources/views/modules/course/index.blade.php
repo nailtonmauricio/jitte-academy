@@ -26,8 +26,10 @@
 
                         <p>{{ $course->description }}</p>
                         <p>
-                            <strong>Duração : {{ $course->duration }}</strong><br>
+                            <strong>Tempo estimado em videoaulas: {{ $courseLength }}</strong><br>
+                            @if(!$course->price == '00.0')
                             <strong>Investimento : {{ number_format($course->price, 2, ',', '.') }}</strong>
+                            @endif
                         </p>
 
                         @if(auth()->check())

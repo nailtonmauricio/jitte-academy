@@ -148,53 +148,6 @@ Side Navbar
 
 <!--
 ========================================================================================================================
-Modal Login
-========================================================================================================================
--->
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header bg-dark bg-gradient">
-                <h5 class="modal-title text-white text-center w-100" id="loginModal">Login</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form class="form-floating" action="{{ route('visitor.login') }}">
-                    @csrf
-                    @method('POST')
-                    <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="e-mail">
-                        <label for="email">E-Mail</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Senha">
-                        <label for="password">Senha</label>
-                    </div>
-                    <div class="d-grid gap-2 mb-2">
-                        <button type="submit" class="btn btn-dark bg-gradient">Enviar</button>
-                    </div>
-                </form>
-                <hr>
-                <div class="row justify-content-around mt-2">
-                    <!--
-                    ========================================================================================================================
-                    TRIGGER MODAL RECUPERAR SENHA
-                    ========================================================================================================================
-                    -->
-                    <div class="col-6">
-                        <a class="text-secondary" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Cadastre-se</a>
-                    </div>
-                    <div class="col-6 text-end">
-                        <a class="text-secondary" href="#" data-bs-toggle="modal" data-bs-target="#recoverModal">Esqueceu a senha?</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--
-========================================================================================================================
 Offcanvas Login
 ========================================================================================================================
 -->
@@ -204,8 +157,9 @@ Offcanvas Login
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-        <form class="form-floating" action="{{ route('visitor.login') }}" method="POST">
+        <form class="form-floating" action="{{ route('visitor.login') }}">
             @csrf
+            @method('POST')
             <div class="form-floating mb-3">
                 <input type="email" class="form-control" id="email" name="email" placeholder="e-mail">
                 <label for="email">E-Mail</label>
@@ -233,50 +187,6 @@ Offcanvas Login
 
 <!--
 ========================================================================================================================
-Login Cadastrar
-========================================================================================================================
--->
-<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header bg-dark bg-gradient">
-                <h5 class="modal-title text-white text-center w-100" id="loginModal">Novo Usuário</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form class="form-floating" action="{{ route('student.store') }}" method="POST">
-                    @csrf
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Nome">
-                        <label for="name">Nome</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="document" name="document" placeholder="CPF" data-maska="###.###.###-##">
-                        <label for="document">CPF</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="contact" name="contact" placeholder="Contato" data-maska="(##) #####-####">
-                        <label for="contact">Contato</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="e-mail">
-                        <label for="email">E-Mail</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Senha">
-                        <label for="password">Senha</label>
-                    </div>
-                    <div class="d-grid gap-2 mb-2">
-                        <button type="submit" class="btn btn-dark bg-gradient">Enviar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--
-========================================================================================================================
 Offcanvas Cadastrar
 ========================================================================================================================
 -->
@@ -286,36 +196,32 @@ Offcanvas Cadastrar
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-
-    </div>
-</div>
-
-<!--
-========================================================================================================================
-Recuperar Senha
-========================================================================================================================
--->
-<div class="modal fade" id="recoverModal" tabindex="-1" aria-labelledby="recoverModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header bg-dark bg-gradient">
-                <h5 class="modal-title text-white text-center w-100" id="recoverModal">Recuperar Senha</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        <form class="form-floating" action="{{ route('student.store') }}" method="POST">
+            @csrf
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Nome">
+                <label for="name">Nome</label>
             </div>
-            <div class="modal-body">
-                <form class="form-floating" action="#">
-                    @csrf
-                    @method('POST')
-                    <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="e-mail">
-                        <label for="email">E-Mail</label>
-                    </div>
-                    <div class="d-grid gap-2 mb-2">
-                        <button type="submit" class="btn btn-dark bg-gradient">Enviar</button>
-                    </div>
-                </form>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="document" name="document" placeholder="CPF" data-maska="###.###.###-##">
+                <label for="document">CPF</label>
             </div>
-        </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="contact" name="contact" placeholder="Contato" data-maska="(##) #####-####">
+                <label for="contact">Contato</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="email" name="email" placeholder="e-mail">
+                <label for="email">E-Mail</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Senha">
+                <label for="password">Senha</label>
+            </div>
+            <div class="d-grid gap-2 mb-2">
+                <button type="submit" class="btn btn-dark bg-gradient">Enviar</button>
+            </div>
+        </form>
     </div>
 </div>
 
@@ -330,11 +236,43 @@ Offcanvas Recuperar Senha
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-
+        <form class="form-floating" action="#">
+            @csrf
+            @method('POST')
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="email" name="email" placeholder="e-mail">
+                <label for="email">E-Mail</label>
+            </div>
+            <div class="d-grid gap-2 mb-2">
+                <button type="submit" class="btn btn-dark bg-gradient">Enviar</button>
+            </div>
+        </form>
     </div>
 </div>
 
 @stack('scripts')
 @livewireScripts
+<script>
+
+    function openRegister() {
+        // Fecha o Offcanvas Login
+        var offcanvasLogin = bootstrap.Offcanvas.getInstance(document.getElementById('offcanvasLogin'));
+        offcanvasLogin.hide();
+        // Abre o Offcanvas Register
+        var offcanvasRegister = new bootstrap.Offcanvas(document.getElementById('offcanvasRegister'));
+        offcanvasRegister.show();
+    }
+
+    function openRecover() {
+        // Fecha o Offcanvas Login
+        var offcanvasLogin = bootstrap.Offcanvas.getInstance(document.getElementById('offcanvasLogin'));
+        offcanvasLogin.hide();
+        // Abre o Offcanvas Recover
+        var offcanvasRecover = new bootstrap.Offcanvas(document.getElementById('offcanvasRecover'));
+        offcanvasRecover.show();
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

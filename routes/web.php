@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LandingPage;
@@ -11,10 +13,12 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\UserAnswerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LessonVideoController;
+use App\Http\Controllers\QuizController;
+use App\Http\Controllers\UserQuizController;
 use App\Http\Livewire\Course;
-//use App\Http\Livewire\LessonVideo;
 use Illuminate\Support\Facades\Route;
 
 ###################### ROTAS PÚBLICAS ##########################
@@ -23,7 +27,9 @@ Route::group([], function () {
     Route::get('/login/visitor', [LandingPage::class, 'login'])->name('visitor.login');
     Route::get('/curso/{course}', [Course::class, 'index'])->name('course.index');
     Route::post('/', [StudentController::class, 'store'])->name('student.store');
-
+    Route::get('/attendance/validate', [AttendanceController::class, 'validate'])->name('attendance.validate');
+    Route::get('/validate/{attendance}', [AttendanceController::class, 'qrValidate'])->name('validate.qrcode');
+    Route::post('/validate', [AttendanceController::class, 'directValidate'])->name('validate.link');
 
     /**
      * Root route
@@ -113,15 +119,29 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/permissoes/{role}', [RolePermissionController::class, 'index'])->name('role-permission.index')->middleware('permission:role-index');
     Route::post('/permissoes/{role}/{permission}', [RolePermissionController::class, 'update'])->name('role-permission.update')->middleware('permission:role-update');
 
-    /** Rotas dos cursos */
+    /** Rotas dos cursos e aulas */
     Route::get('/cursos', [LandingPage::class, 'index'])->name('all-courses.index');
     Route::post('/cursos/{course}/matricula', [EnrollmentController::class, 'enroll'])->name('course.enroll');
     Route::get('/meus-cursos', [StudentController::class, 'index'])->name('my-courses.index');
     Route::get('/curso/{course}/modulos', [ModuleController::class, 'index'])->name('course-modules.index');
-    Route::get('/aula/{lesson}', [LessonVideoController::class, 'index'])->name('lesson-video.index');
-    //Route::post()->name('matricular-se')
+    Route::get('/aula/{lesson}/video', [LessonVideoController::class, 'index'])->name('lesson-video.index');
+    Route::get('/aula/{lesson}/avaliacao', [QuizController::class, 'findByLesson'])->name('final-lesson.create');
+    Route::patch('/aula', [LessonVideoController::class, 'update'])->name('lesson-video.update');
 
-    /** Rotas dos certificados */
+    /** Rota de downloads de material */
+    Route::get('/cursos/{course}/download', [Course::class, 'download'])->name('course-files.download');
 
+    /** Rotas dos declarações */
+    Route::get('/declaracoes', [AttendanceController::class, 'index'])->name('attendance.index');
+    Route::get('/declaracao/{course}', [AttendanceController::class, 'show'])->name('attendance.show');
+
+    /** Rota para certificados */
+    Route::get('/certificados', [CertificateController::class, 'index'])->name('certificate.index');
+    Route::get('/certificado/{course}', [CertificateController::class, 'show'])->name('certificate.show');
+
+    /** Rotas para avaliações */
+    Route::get('/avaliacoes', [UserQuizController::class, 'index'])->name('quiz.index');
+    #Route::get('/avaliacao/{quiz}', [QuizController::class, 'create'])->name('quiz.create');
+    Route::post('/answer', [UserAnswerController::class, 'store'])->name('answer.store');
 });
 ################################################################

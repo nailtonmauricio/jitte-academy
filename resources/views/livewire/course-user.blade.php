@@ -14,7 +14,7 @@
                 <div class="col-12 col-sm-6 col-md-4 col-lg-4 card-curso">
                     <div class="card shadow p-0 mb-3 bg-white rounded">
                         <a href="{{ route('course-modules.index', ['course' =>$course->id]) }}">
-                            <img class="card-img-top aument-transi" src="{{ $course->card }}" alt="{{ $course->name }}">
+                            <img class="card-img-top" src="{{ $course->card }}" alt="{{ $course->name }}">
                         </a>
 
                         <div class="card-body">
@@ -25,8 +25,12 @@
                             </div>
 
                             @if($user = $course->users->first())
-                                <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="{{ $user->pivot->progress }}" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-bar bg-success" style="min-width: 5%;width: {{ $user->pivot->progress }}%">{{ $user->pivot->progress }}%</div>
+                                @php
+                                    // Garante que o progresso não ultrapasse 100%
+                                    $progress = min($user->pivot->progress, 100);
+                                @endphp
+                                <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar bg-success" style="min-width: 5%;width: {{ $user->pivot->progress }}%">{{ $progress}}%</div>
                                 </div>
                             @endif
                         </div>
@@ -36,11 +40,9 @@
                 <script>
                     document.addEventListener('DOMContentLoaded', () => {
                         Swal.fire({
-                            title: "Info!",
                             text: "Não foram encontrados registros na base de dados.",
                             icon: "info",
                             showConfirmButton: false,
-                            timer: 5000,
                         });
                     });
                 </script>

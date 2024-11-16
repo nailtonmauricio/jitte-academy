@@ -9,32 +9,70 @@
     </div>
 
     <div class="col-xl">
-            <div class="card mb-4">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <div>
-                        <i class="fa-solid fa-book-open"></i>
-                        {{ $lesson->title }}
-                    </div>
-                    <div>
-                        <button class="btn btn-sm btn-dark"><i class="fa-solid fa-circle-chevron-left"></i></button>
-                        <button class="btn btn-sm btn-dark"><i class="fa-solid fa-circle-chevron-right"></i></button>
-                        <form class="form-check-inline me-0" method="POST" action="">
-                            @csrf
-                            <input type="hidden" value="1">
-                            <button class="btn btn-sm btn-dark">Concluir</button>
-                        </form>
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    <div class="ratio ratio-16x9">
-                        <iframe src="{{ $lesson->content }}" title="YouTube video" allowfullscreen></iframe>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    {{ $lesson->summary }}
+        <div class="card mb-4">
+            <div class="card-header">
+                <div>
+                    <i class="fa-solid fa-book-open"></i>
+                    {{ $lesson->title }}
                 </div>
             </div>
-        </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-end mb-2">
+                    @if($previous)
+                        <a class="btn btn-sm btn-dark me-1" href="{{ route('lesson-video.index', ['lesson'=>$previous->id]) }}"><i class="fa-solid fa-backward-fast"></i></a>
+                    @else
+                        <button class="btn btn-sm btn-dark me-1" onclick="callLesson('Não há aula anterior a ser assistida...')"><i class="fa-solid fa-backward-fast"></i></button>
+                    @endif
 
+                    @if($next)
+                            @if($lessonStatus == 1)
+                            <a class="btn btn-sm btn-dark me-1" href="{{ route('lesson-video.index', ['lesson'=>$next->id]) }}"><i class="fa-solid fa-forward-fast"></i></a>
+                            @else
+                                <button class="btn btn-sm btn-dark me-1" onclick="callLesson('Conclua a aula atual antes de acessar a próxima.')"><i class="fa-solid fa-forward-fast"></i></button>
+                            @endif
+                    @else
+                        <button class="btn btn-sm btn-dark me-1" onclick="callLesson('Não há uma próxima aula a ser assistida...')"><i class="fa-solid fa-forward-fast"></i></button>
+                    @endif
+                    @if(!$lessonStatus == 1)
+                    <form class="form-check-inline me-0" method="POST" action="{{ route('lesson-video.update') }}">
+                         @csrf
+                         @method('patch')
+                         <input type="hidden" name="lesson_id" value="{{ $lesson->id }}">
+                         <input type="hidden" name="status" value="1">
+                         <button class="btn btn-sm btn-dark" data-bs-toggle="tooltip" data-bs-placement="top" title="Marcar como assistida!">
+                                <i class="fa-solid fa-check"></i>
+                         </button>
+                    </form>
+                    @endif
+                </div>
+                <div class="ratio ratio-16x9">
+                    <iframe src="{{ $lesson->content }}" title="YouTube video" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="card-footer">
+                {{ $lesson->summary }}
+            </div>
+        </div>
+    </div>
+    <script>
+        function callLesson(message)
+        {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            });
+
+            Toast.fire({
+                icon: 'info',
+                title: message
+            });
+        }
+    </script>
 @endsection

@@ -27,7 +27,7 @@ Route::group([], function () {
     Route::get('/login/visitor', [LandingPage::class, 'login'])->name('visitor.login');
     Route::get('/curso/{course}', [Course::class, 'index'])->name('course.index');
     Route::post('/', [StudentController::class, 'store'])->name('student.store');
-    Route::get('/attendance/validate', [AttendanceController::class, 'validate'])->name('attendance.validate');
+    Route::get('/validar/documento', [AttendanceController::class, 'validate'])->name('attendance.validate');
     Route::get('/validate/{attendance}', [AttendanceController::class, 'qrValidate'])->name('validate.qrcode');
     Route::post('/validate', [AttendanceController::class, 'directValidate'])->name('validate.link');
 
@@ -141,7 +141,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     /** Rotas para avaliações */
     Route::get('/avaliacoes', [UserQuizController::class, 'index'])->name('quiz.index');
-    #Route::get('/avaliacao/{quiz}', [QuizController::class, 'create'])->name('quiz.create');
     Route::post('/answer', [UserAnswerController::class, 'store'])->name('answer.store');
 });
 ################################################################

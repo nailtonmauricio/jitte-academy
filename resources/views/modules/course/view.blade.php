@@ -31,7 +31,7 @@
                                 <button class="btn btn-sm btn-dark me-1" onclick="callLesson('Conclua a aula atual antes de acessar a próxima.')"><i class="fa-solid fa-forward-fast"></i></button>
                             @endif
                     @else
-                        <button class="btn btn-sm btn-dark me-1" onclick="callLesson('Não há uma próxima aula a ser assistida...')"><i class="fa-solid fa-forward-fast"></i></button>
+                        <button class="btn btn-sm btn-dark me-1" onclick="callLesson('Não há uma próxima aula a ser assistida neste módulo, verifique os demais módulos e prossiga em sua trilha de sucesso...')"><i class="fa-solid fa-forward-fast"></i></button>
                     @endif
                     @if(!$lessonStatus == 1)
                     <form class="form-check-inline me-0" method="POST" action="{{ route('lesson-video.update') }}">

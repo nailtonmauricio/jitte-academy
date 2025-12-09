@@ -8,6 +8,7 @@ use App\Models\Lesson AS LessonModel;
 class Lesson extends Component
 {
     public $moduleId;
+    public $is_accessible;
     public $lessons = [];
 
 
@@ -29,6 +30,7 @@ class Lesson extends Component
             ->with(['users' => function ($query) use ($user) {
                 $query->where('user_id', $user->id); // Filtrar pelo usuário autenticado
             }])
+            ->orderBy('order', 'asc')
             ->get();
     }
 
@@ -36,7 +38,8 @@ class Lesson extends Component
     public function render()
     {
         return view('livewire.lesson', [
-            'lessons' => $this->lessons
+            'lessons' => $this->lessons,
+            'is_accessible' => $this->is_accessible
         ]); // Retorna a view do componente
     }
 }

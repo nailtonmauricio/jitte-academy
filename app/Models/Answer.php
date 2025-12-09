@@ -20,4 +20,12 @@ class Answer extends Model
     {
         return $this->belongsTo(Question::class);
     }
+
+    public static function isCorrect($questionId, $answerId)
+    {
+        return self::where('question_id', $questionId)
+            ->where('id', $answerId)
+            ->where('is_correct', true)
+            ->exists();
+    }
 }

@@ -60,7 +60,7 @@
 
     <p class="text-center">
         Para verificar manualmente autenticidade acesse:<br>
-        <a href="#">https://academy.talem.com.br/attendance/validate</a><br>
+        <a href="https://academy.talem.com.br/attendance/validate">https://academy.talem.com.br/attendance/validate</a><br>
         Em validar declarações digite
     </p>
 

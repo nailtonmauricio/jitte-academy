@@ -29,7 +29,11 @@
                                 <td class="d-none d-md-table-cell">{{ $user->pivot->score }}</td>
                             @endforeach
                             <td>
-                                {{--<a href="{{ route('quiz.create', ['quiz'=>$quiz->id]) }}" class="bg-gradient btn btn-xs btn-primary me-2 mt-1 mt-md-0">Iniciar <i class="fa-solid fa-chevron-right"></i></a>--}}
+                                @if($user->pivot->score >= 75)
+                                    APROVADO
+                                @else
+                                    TENTE NOVAMENTE
+                                @endif
                             </td>
                         </tr>
                     @empty

@@ -32,14 +32,29 @@
                         <input type="hidden" name="question_id" value="{{ $question->id }}">
                         <input type="hidden" name="course_id" value="{{ $quiz->course_id }}">
                         <input type="hidden" name="lesson_id" value="{{ $lesson_id }}">
-                        @foreach($question->answers as $answer)
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="answer_id" id="flexRadioDefault{{ $answer->id}}" value="{{ $answer->id }}">
-                                <label class="form-check-label" for="flexRadioDefault{{ $answer->id }}">
-                                    {{ $answer->answer_text }}
-                                </label>
-                            </div>
-                        @endforeach
+                        <table class="table table-hover">
+                            <tbody>
+                            @foreach($question->answers as $answer)
+                                <tr onclick="selectAnswer({{ $answer->id }})" style="cursor: pointer;">
+                                    <td>
+                                        <input
+                                            class="form-check-input"
+                                            type="radio"
+                                            name="answer_id"
+                                            id="flexRadioDefault{{ $answer->id }}"
+                                            value="{{ $answer->id }}"
+                                            style="pointer-events: none;">
+                                        <label
+                                            class="form-check-label"
+                                            for="flexRadioDefault{{ $answer->id }}">
+                                            {{ $answer->answer_text }}
+                                        </label>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+
                         <div class="d-flex justify-content-end mb-2">
                             <button type="submit" class="btn btn-primary">Próximo <i class="fa-solid fa-chevron-right"></i></button>
                         </div>
@@ -51,6 +66,10 @@
         </div>
     </div>
     <script>
+        function selectAnswer(id) {
+            document.getElementById('flexRadioDefault' + id).checked = true;
+        }
+
         function callLesson(message)
         {
             const Toast = Swal.mixin({

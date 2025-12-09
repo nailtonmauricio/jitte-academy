@@ -37,13 +37,9 @@
     <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0">
         @if(!auth()->check())
             <li class="nav-item">
-                {{--<a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal">
-                    Entrar<span class="fa fa-sign-in ms-3"></span>
-                </a>--}}
-
-                <a href="#" class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLogin" aria-controls="offcanvasRight">
-                    Entrar<span class="fa fa-sign-in ms-3"></span>
-                </a>
+                <button class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLogin" aria-controls="offcanvasLogin">
+                    Entrar <span class="fa fa-sign-in ms-3"></span>
+                </button>
             </li>
         @else
             <li class="nav-item"><a class="nav-link position-relative" id="navbarGift" href="#" role="button"><i class="fa-solid fa-bell"></i></a></li>
@@ -168,20 +164,26 @@ Offcanvas Login
                 <input type="password" class="form-control" id="password" name="password" placeholder="Senha">
                 <label for="password">Senha</label>
             </div>
+            <div class="row justify-content-around mt-2">
+                <!-- Link para abrir Offcanvas de Cadastro -->
+                <div class="col-6">
+                    <a class="text-secondary" href="#" onclick="openRegister()">Cadastre-se</a>
+                    {{--<button class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRegister" aria-controls="offcanvasRegister">
+                        Cadastre-se
+                    </button>--}}
+                </div>
+                <!-- Link para abrir Offcanvas de Recuperar Senha -->
+                <div class="col-6 text-end">
+                    <a class="text-secondary" href="#" onclick="openRecover()">Esqueceu a senha?</a>
+                    {{--<button class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRecover" aria-controls="offcanvasRecover">
+                        Esqueceu a senha?
+                    </button>--}}
+                </div>
+            </div>
             <div class="d-grid gap-2 mb-2">
                 <button type="submit" class="btn btn-dark bg-gradient">Enviar</button>
             </div>
         </form>
-        <div class="row justify-content-around mt-2">
-            <!-- Link para abrir Offcanvas de Cadastro -->
-            <div class="col-6">
-                <a class="text-secondary" href="#" onclick="openRegister()">Cadastre-se</a>
-            </div>
-            <!-- Link para abrir Offcanvas de Recuperar Senha -->
-            <div class="col-6 text-end">
-                <a class="text-secondary" href="#" onclick="openRecover()">Esqueceu a senha?</a>
-            </div>
-        </div>
     </div>
 </div>
 

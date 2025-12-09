@@ -24,4 +24,12 @@ class Question extends Model
     {
         return $this->hasMany(Answer::class)->inRandomOrder();
     }
+
+    // contar quantas questoes tem por curso
+    public static function calculateQuestionValue($quizId)
+    {
+        $totalQuestions = self::where('quiz_id', $quizId)->count();
+        return $totalQuestions > 0 ? 100 / $totalQuestions : 0; // Evita divisão por zero
+    }
+
 }

@@ -16,7 +16,10 @@
                 <div class="col-12 col-sm-6 col-md-4 col-lg-4 card-curso">
                     <div class="card shadow p-0 mb-3 bg-white rounded">
                         <a href="{{ route('course.index', ['course' =>$course->id]) }}">
-                            <img class="card-img-top" src="{{ $course->card }}" alt="{{ $course->name }}">
+                            <figure class="figure">
+                                <img class="card-img-top shadow-lg mb-2" src="{{ asset('storage/' . $course->card) }}" alt="{{ $course->name }}">
+                                <figcaption class="figure-caption text-center h4">{{ $course->name }}</figcaption>
+                            </figure>
                         </a>
 
                         <div class="card-body">

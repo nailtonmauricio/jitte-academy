@@ -12,17 +12,22 @@
         @if($lessons)
             @foreach($lessons as $index => $lesson)
                 <tr>
-                    @if($index == 0 || $lessons[$index - 1]->users->first()->pivot->status == 1)
-                        {{-- Se for a primeira aula ou se a aula anterior estiver concluída --}}
-                        @if($lesson->is_exam)
-                            <td class="col-md-6"><a class="nav-link" href="{{ route('final-lesson.create', ['lesson' => $lesson->id]) }}">{{ $lesson->title }}</a></td>
+                    @if($is_accessible)
+                        @if($index == 0 || $lessons[$index - 1]->users->first()->pivot->status == 1)
+                            {{-- Se for a primeira aula ou se a aula anterior estiver concluída --}}
+                            @if($lesson->is_exam)
+                                <td class="col-md-6"><a class="nav-link" href="{{ route('final-lesson.create', ['lesson' => $lesson->id]) }}">{{ $lesson->title }}</a></td>
+                            @else
+                                <td class="col-md-6"><a class="nav-link" href="{{ route('lesson-video.index', ['lesson'=>$lesson->id]) }}">{{ $lesson->title }}</a></td>
+                            @endif
                         @else
-                            <td class="col-md-6"><a class="nav-link" href="{{ route('lesson-video.index', ['lesson'=>$lesson->id]) }}">{{ $lesson->title }}</a></td>
+                            {{-- Se a aula anterior não estiver concluída, bloqueia o acesso --}}
+                            <td class="col-md-6"><a class="nav-link" href="#" onclick="callLesson('Conclua a aula anterior antes de acessar a próxima.')">{{ $lesson->title }}</a></td>
                         @endif
                     @else
-                        {{-- Se a aula anterior não estiver concluída, bloqueia o acesso --}}
-                        <td class="col-md-6"><a class="nav-link" href="#" onclick="callLesson('Conclua a aula atual antes de acessar a próxima.')">{{ $lesson->title }}</a></td>
+                        <td class="col-md-6"><a class="nav-link" href="#" onclick="callLesson('Conclua todas as aulas do módulo anterior para poder acessar este conteúdo.')">{{ $lesson->title }}</a></td>
                     @endif
+
 
                     <td class="col-md-2 d-none d-md-table-cell">{{ $lesson->length }}</td>
                     <td class="col-md-4 d-none d-md-table-cell">{{ $lesson->users->first()->pivot->updated_at ? \Carbon\Carbon::parse($lesson->users->first()->pivot->updated_at)->format('d/m/Y H:i') : '' }}</td>

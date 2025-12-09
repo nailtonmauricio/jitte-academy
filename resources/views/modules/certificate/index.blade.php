@@ -8,15 +8,12 @@
     </div>
 
     <x-alert/>
-    
+
     <div class="row">
         @forelse($courses as $course)
             <div class="col-12 col-sm-6 col-md-4 col-lg-4 card-curso">
                 <div class="card shadow p-0 mb-3 bg-white rounded">
-                    <a href="{{ route('course.index', ['course' =>$course->id]) }}">
-                        <img class="card-img-top" src="{{ asset('images/default-certificate.jpeg') }}" alt="{{ $course->name }}">
-                    </a>
-
+                    <img class="card-img-top" src="{{ asset('images/default-certificate.jpeg') }}" alt="{{ $course->name }}">
                     <div class="card-body text-center">
                         <span style="font-family: 'Roboto Light', sans-serif;"><strong>{{ $course->name }}</strong></span>
                         <p style="padding-top: 10px;">

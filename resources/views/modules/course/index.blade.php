@@ -18,7 +18,7 @@
                 <div class="row">
                     <div class="col-12 col-md-4 mb-3 mb-md-0">
                         <figure class="figure">
-                            <img src="{{ $course->card }}" class="figure-img img-fluid rounded" alt="{{ $course->name }}">
+                            <img class="card-img-top shadow-lg mb-2" src="{{ asset('storage/' . $course->card) }}" alt="{{ $course->name }}">
                         </figure>
                     </div>
 

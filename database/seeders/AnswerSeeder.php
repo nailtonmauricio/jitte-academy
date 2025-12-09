@@ -198,7 +198,7 @@ class AnswerSeeder extends Seeder
         // Em uma regex, como você representa um ou mais caracteres alfanuméricos?
         if (!Answer::where('id', 25)->exists()) {
             Answer::create([
-                'answer_text' => '[a-zA-Z]+',
+                'answer_text' => '[a-zA-Z0-9]+',
                 'is_correct' => 1,
                 'question_id' => 7,
             ]);

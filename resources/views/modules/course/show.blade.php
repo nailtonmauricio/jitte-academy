@@ -19,7 +19,6 @@
                 @php
                     // Garante que o progresso não ultrapasse 100%
                     $progress = min($courseUser->progress, 100);
-                    #dd($progress);
                 @endphp
                 <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="100">
                     <div class="progress-bar bg-success" style="min-width: 5%; width: {{ $progress }}%;">
@@ -40,7 +39,7 @@
             <div class="card-body">
 
                 <x-alert/>
-                @livewire('lesson', ['moduleId' => $module->id])
+                @livewire('lesson', ['moduleId' => $module->id, 'is_accessible' => $module->is_accessible])
             </div>
         </div>
     @php $counter++; @endphp

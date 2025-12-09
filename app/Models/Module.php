@@ -16,6 +16,15 @@ class Module extends Model
         'summary',
     ];
 
+    public function isCompletedByUser($userId)
+    {
+        return $this->lessons->every(function ($lesson) use ($userId) {
+            $pivot = $lesson->users()->where('user_id', $userId)->first()?->pivot;
+            return $pivot && $pivot->status == 1;
+        });
+    }
+
+
     public function course()
     {
         return $this->belongsTo(Course::class);

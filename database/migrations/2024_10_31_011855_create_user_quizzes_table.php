@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('quiz_id')->constrained()->onDelete('cascade');
-            $table->integer('score')->nullable();
+            $table->integer('score')->default(0);
             $table->timestamps();
         });
     }

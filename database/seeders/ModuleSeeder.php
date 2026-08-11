@@ -89,5 +89,200 @@ class ModuleSeeder extends Seeder
                 'order' => 2,
             ]);
         }
+
+        /** Modulos do curso CFAQ-MOM/MOC, disciplina Lingua Portuguesa */
+
+        if (!Module::where('id', 9)->exists()) {
+            Module::create([
+                'course_id' => 4,
+                'title' => 'Substantivos',
+                'summary' => 'Classificação, formação e flexão',
+                'order' => 1,
+            ]);
+        }
+
+        if (!Module::where('id', 10)->exists()) {
+            Module::create([
+                'course_id' => 4,
+                'title' => 'Adjetivos',
+                'summary' => 'Formação, pátrios e locução adjetiva',
+                'order' => 2,
+            ]);
+        }
+
+        if (!Module::where('id', 11)->exists()) {
+            Module::create([
+                'course_id' => 4,
+                'title' => 'Verbos',
+                'summary' => 'Flexionar nos modos indicativo, sub-
+juntivo e imperativo',
+                'order' => 3,
+            ]);
+        }
+
+        if (!Module::where('id', 12)->exists()) {
+            Module::create([
+                'course_id' => 4,
+                'title' => 'Pronomes',
+                'summary' => 'Pessoal, possessivo, demonstrativo,
+indefinido e interrogativo',
+                'order' => 4,
+            ]);
+        }
+
+        if (!Module::where('id', 13)->exists()) {
+            Module::create([
+                'course_id' => 4,
+                'title' => 'Advérbios',
+                'summary' => 'Locuções adverbiais',
+                'order' => 5,
+            ]);
+        }
+
+        if (!Module::where('id', 14)->exists()) {
+            Module::create([
+                'course_id' => 4,
+                'title' => 'Artigos',
+                'summary' => 'Definidos e indefinidos',
+                'order' => 6,
+            ]);
+        }
+
+        if (!Module::where('id', 15)->exists()) {
+            Module::create([
+                'course_id' => 4,
+                'title' => 'Numerais',
+                'summary' => 'Cardinais, ordinais, multiplicativos e
+fracionários',
+                'order' => 7,
+            ]);
+        }
+
+        if (!Module::where('id', 16)->exists()) {
+            Module::create([
+                'course_id' => 4,
+                'title' => 'Preposições',
+                'summary' => 'Uso e outras coisas',
+                'order' => 8,
+            ]);
+        }
+
+        if (!Module::where('id', 17)->exists()) {
+            Module::create([
+                'course_id' => 4,
+                'title' => 'Conjunções e Interjeições',
+                'summary' => 'Uso e outras coisas',
+                'order' => 9,
+            ]);
+        }
+
+        /** Modulos do curso CFAQ-MOM/MOC, disciplina Matematica */
+        if (!Module::where('id', 18)->exists()) {
+            Module::create([
+                'course_id' => 5,
+                'title' => 'Conjuntos',
+                'summary' => 'Uso e outras coisas',
+                'order' => 1,
+            ]);
+        }
+
+        if (!Module::where('id', 19)->exists()) {
+            Module::create([
+                'course_id' => 5,
+                'title' => 'Escalas de medidas de temperatura',
+                'summary' => 'Uso e outras coisas',
+                'order' => 2,
+            ]);
+        }
+
+        if (!Module::where('id', 20)->exists()) {
+            Module::create([
+                'course_id' => 5,
+                'title' => 'Numeros naturais',
+                'summary' => 'Uso e outras coisas',
+                'order' => 3,
+            ]);
+        }
+
+        if (!Module::where('id', 21)->exists()) {
+            Module::create([
+                'course_id' => 5,
+                'title' => 'Numeros decimais',
+                'summary' => 'Uso e outras coisas',
+                'order' => 4,
+            ]);
+        }
+
+        if (!Module::where('id', 22)->exists()) {
+            Module::create([
+                'course_id' => 5,
+                'title' => 'Numeros decimais',
+                'summary' => 'Uso e outras coisas',
+                'order' => 5,
+            ]);
+        }
+
+        if (!Module::where('id', 23)->exists()) {
+            Module::create([
+                'course_id' => 5,
+                'title' => 'Numeros negativos e positivos',
+                'summary' => 'Uso e outras coisas',
+                'order' => 6,
+            ]);
+        }
+
+        if (!Module::where('id', 24)->exists()) {
+            Module::create([
+                'course_id' => 5,
+                'title' => 'Fraçoes',
+                'summary' => 'Uso e outras coisas',
+                'order' => 7,
+            ]);
+        }
+
+        if (!Module::where('id', 25)->exists()) {
+            Module::create([
+                'course_id' => 5,
+                'title' => 'Transformaçao de unidades de medida',
+                'summary' => 'Uso e outras coisas',
+                'order' => 8,
+            ]);
+        }
+
+        if (!Module::where('id', 26)->exists()) {
+            Module::create([
+                'course_id' => 5,
+                'title' => 'Geometria',
+                'summary' => 'Uso e outras coisas',
+                'order' => 9,
+            ]);
+        }
+
+        if (!Module::where('id', 27)->exists()) {
+            Module::create([
+                'course_id' => 5,
+                'title' => 'Potencia e radiciaçao',
+                'summary' => 'Uso e outras coisas',
+                'order' => 10,
+            ]);
+        }
+
+        if (!Module::where('id', 28)->exists()) {
+            Module::create([
+                'course_id' => 5,
+                'title' => 'Equaçao de 1 e 2 grau',
+                'summary' => 'Uso e outras coisas',
+                'order' => 11,
+            ]);
+        }
+
+        if (!Module::where('id', 29)->exists()) {
+            Module::create([
+                'course_id' => 5,
+                'title' => 'Porcentagem',
+                'summary' => 'Uso e outras coisas',
+                'order' => 12,
+            ]);
+        }
     }
 }

@@ -51,6 +51,28 @@ As expressões regulares permitem que você faça coisas como:
             ]);
         }
 
+        if (!Course::where('id', 4)->exists()) {
+            Course::create([
+                'name' => 'Preparatorio CFAQ-MOM/MOC, Portugues',
+                'description' => 'CFAQ-MOM/MAC',
+                'subcategory_id' => 1,
+                'card' => 'courses/4/poster.jpg',
+                'price' => 00.00,
+                'duration' => '06:22:42',
+            ]);
+        }
+
+        if (!Course::where('id', 5)->exists()) {
+            Course::create([
+                'name' => 'Preparatorio CFAQ-MOM/MOC, Matematica',
+                'description' => 'CFAQ-MOM/MAC',
+                'subcategory_id' => 1,
+                'card' => 'courses/5/poster.jpg',
+                'price' => 00.00,
+                'duration' => '06:22:42',
+            ]);
+        }
+
         //Course::factory(8)->create();
     }
 }

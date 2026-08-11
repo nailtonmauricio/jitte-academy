@@ -126,5 +126,31 @@ São criadas usando -, * ou +: Listas ordenadas São criadas usando números seg
                 'order' => 1,
             ]);
         }
+
+        if (!Lesson::where('id', 11)->exists()) {
+            Lesson::create([
+                'module_id' => 9,
+                'title' => 'Classificação dos Substantivos',
+                'summary' => 'O substantivo é a classe gramatical responsável por nomear seres, objetos, lugares,
+                 sentimentos, ações e conceitos. Os substantivos são categorizados em pares opostos (além dos coletivos)
+                 com base naquilo que designam.',
+                'content' => 'https://www.youtube.com/embed/y0SmVU1gJK8?si=53csQ3c1pbl4kVsE" title="YouTube video player"',
+                'length' => '00:12:36',
+                'order' => 1,
+            ]);
+        }
+
+        if (!Lesson::where('id', 12)->exists()) {
+            Lesson::create([
+                'module_id' => 9,
+                'title' => 'Formaçao do substantivo',
+                'summary' => 'A formação do substantivo é o processo de estruturação e criação de novas palavras que
+                 funcionam como substantivos na língua portuguesa, dividindo-se principalmente entre primitivos,
+                 derivados, simples e compostos.',
+                'content' => 'https://www.youtube.com/embed/RW22eTT71Xg?si=m6cqYHtWXm2q9YtS" title="YouTube video player"',
+                'length' => '00:02:07',
+                'order' => 1,
+            ]);
+        }
     }
 }

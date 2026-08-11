@@ -8,8 +8,13 @@
     </div>
     <div class="row">
         <div class="col-xl-3 col-md-6">
-            <div class="card bg-primary text-white mb-4">
-                <div class="card-body">CARD DEFAULT INFO</div>
+            <div class="card bg-danger text-white mb-4">
+                <div class="card-body">
+                    PRECISA MELHORAR
+                    <span class="badge bg-light text-danger position-absolute top-0 end-0 m-2">
+                        6 {{--PUCHAR ESSAS INFORMACOES DA BASE DE DADOS, DA TABELA QUE ARMAZENA O RESULTADO DO NIVELAMENTO--}}
+                    </span>
+                </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
                     <a class="small text-white stretched-link" href="#">Exibir detalhes</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -18,7 +23,26 @@
         </div>
         <div class="col-xl-3 col-md-6">
             <div class="card bg-warning text-white mb-4">
-                <div class="card-body">CARD DEFAULT WARNING</div>
+                <div class="card-body">
+                    EM DESENVOLVIMENTO
+                    <span class="badge bg-light text-warning position-absolute top-0 end-0 m-2">
+                        4
+                    </span>
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="#">Exibir detalhes</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-primary text-white mb-4">
+                <div class="card-body">
+                    PROEFICIENTE
+                    <span class="badge bg-light text-primary position-absolute top-0 end-0 m-2">
+                        4
+                    </span>
+                </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
                     <a class="small text-white stretched-link" href="#">Exibir detalhes</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -27,16 +51,12 @@
         </div>
         <div class="col-xl-3 col-md-6">
             <div class="card bg-success text-white mb-4">
-                <div class="card-body">CAR DEFAULT SUCCESS</div>
-                <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="#">Exibir detalhes</a>
-                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                <div class="card-body">
+                    DOMÍNIO
+                    <span class="badge bg-light text-success position-absolute top-0 end-0 m-2">
+                        5
+                    </span>
                 </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-md-6">
-            <div class="card bg-danger text-white mb-4">
-                <div class="card-body">CARD DEFAULT DANGER</div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
                     <a class="small text-white stretched-link" href="#">Exibir detalhes</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -50,7 +70,7 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-chart-area me-1"></i>
-                    Área de Gráficos A
+                    Matemática
                 </div>
                 <div class="card-body">
                     <canvas id="myAreaChart" width="100%" height="40"></canvas>
@@ -61,7 +81,7 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-chart-bar me-1"></i>
-                    Área de Gráficos B
+                    Portugues
                 </div>
                 <div class="card-body">
                     <canvas id="myBarChart" width="100%" height="40"></canvas>

@@ -12,18 +12,18 @@
         <div class="card mb-4">
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
-                        <span class="fw-bold h5"><i class="fa-solid fa-clipboard-question mt-1"></i> Avaliação Final:  {{ $quiz->course->name }} </span>
+                        <span class="fw-bold h5"><i class="fa-solid fa-clipboard-question mt-1"></i> {{ $quiz->course->name }} </span>
                         <span class="fw-bold text-secondary">Questão {{ $questions->currentPage() }} de {{ $questions->lastPage() }}</span>
                     </div>
                 </div>
                 @foreach($questions as $question)
                 <div class="card-body d-flex justify-content-between">
-                    <p class="h5">{{ $question->question_text }}</p>
+                    <p class="h5">{!! nl2br(e($question->question_text)) !!}</p>
                     <p class="h5"></p>
                 </div>
 
                 <div class="card-footer">
-                    <form action="{{ route('answer.store') }}" method="post">
+                    <form id="quizForm" action="{{ route('answer.store') }}" method="post">
                         @csrf
                         <input type="hidden" name="page" value="{{ $questions->currentPage() }}">
                         <input type="hidden" name="lastPage" value="{{ $questions->total() }}">
@@ -37,6 +37,7 @@
                             @foreach($question->answers as $answer)
                                 <tr onclick="selectAnswer({{ $answer->id }})" style="cursor: pointer;">
                                     <td>
+                                        {{ chr(97 + $loop->index) }})
                                         <input
                                             class="form-check-input"
                                             type="radio"
@@ -56,7 +57,7 @@
                         </table>
 
                         <div class="d-flex justify-content-end mb-2">
-                            <button type="submit" class="btn btn-primary">Próximo <i class="fa-solid fa-chevron-right"></i></button>
+                            <button type="submit" class="btn btn-primary" onclick="validateAndSend()">Próximo <i class="fa-solid fa-chevron-right"></i></button>
                         </div>
                     </form>
                 </div>
@@ -68,6 +69,19 @@
     <script>
         function selectAnswer(id) {
             document.getElementById('flexRadioDefault' + id).checked = true;
+        }
+
+        function validateAndSend(event) {
+            document.getElementById('quizForm').addEventListener('submit', function(event) {
+                // Busca se existe algum rádio marcado
+                const selectedAnswer = document.querySelector('input[type="radio"]:checked');
+
+                // Se não houver nenhum selecionado
+                if (!selectedAnswer) {
+                    event.preventDefault(); // Bloqueia o envio do formulário com segurança
+                    callLesson('Por favor, selecione uma opção antes de continuar!'); // Dispara o toast
+                }
+            });
         }
 
         function callLesson(message)
